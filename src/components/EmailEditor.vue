@@ -8,7 +8,7 @@
 
 <script>
 import { loadScript } from './loadScript';
-// import pkg from '../../package.json';
+import pkg from '../../package.json';
 
 let lastEditorId = 0;
 
