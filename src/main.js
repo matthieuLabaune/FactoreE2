@@ -1,20 +1,26 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import Axios from 'axios'
+import Vue from 'vue/dist/vue.js'
+import VueRouter from 'vue-router'
 
-Vue.prototype.$http = Axios;
-
-const token = localStorage.getItem('user-token')
-if (token) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
-}
+import Example from './views/Example.vue'
+import DesignList from './views/DesignList.vue'
+import DesignEdit from './views/DesignEdit.vue'
 
 Vue.config.productionTip = false
 
+const routes = [
+  { path: '/', component: Example },
+  { path: '/dashboard', component: DesignList },
+  { path: '/dashboard/new', component: DesignEdit },
+  { path: '/dashboard/edit/:designId', component: DesignEdit },
+]
+
+const router = new VueRouter({
+  mode: 'history',
+  routes
+})
+
+Vue.use(VueRouter)
+
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+  router
 }).$mount('#app')
