@@ -4,7 +4,7 @@ import store from './store.js'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import Login from './components/Login.vue'
-import Secure from './components/Secure.vue'
+import Secure from './components/Dashboard.vue'
 import Register from './components/Register.vue'
 
 Vue.use(Router)
@@ -28,10 +28,10 @@ let router = new Router({
       component: Register
     },
     {
-      path: '/secure',
-      name: 'secure',
-      component: Secure,
-      meta: { 
+      path: "/dashboard",
+      name: "Dashboard",
+      component: Dashboard,
+      meta: {
         requiresAuth: true
       }
     },
@@ -51,7 +51,7 @@ router.beforeEach((to, from, next) => {
     }
     next('/login') 
   } else {
-    next() 
+    next()
   }
 })
 
