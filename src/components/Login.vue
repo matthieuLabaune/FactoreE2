@@ -1,24 +1,41 @@
 <template>
-  <div>
-    <form class="login" @submit.prevent="login">
-      <h1>Sign in</h1>
-      <label>Nom</label>
-      <input required v-model="firstname" type="text" placeholder="Nom" />
-      <label>Prénom</label>
-      <input required v-model="name" type="text" placeholder="Prénom" />
-      <hr />
-      <label>Mot de passe</label>
-      <input
-        required
-        v-model="password"
-        type="text"
-        placeholder="Mot de passe"
-      />
-      <button type="submit">Login</button>
-    </form>
+  <div class="login">
+    <b-form class="input" @submit="onSubmit" @reset="onReset" v-if="visibility">
+      <b-form-group
+        id="input-group-1"
+        label=" Votre Pseudo:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.nickname"
+          type="text"
+          required
+          placeholder="Entrez votre Pseudo"
+        ></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-2"
+        label="Votre Password:"
+        label-for="input-2"
+      >
+        <b-form-input
+          id="input-2"
+          v-model="form.password"
+          required
+          placeholder="Entrez votre Password"
+        ></b-form-input>
+      </b-form-group>
+
+      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="reset" variant="danger">Reset</b-button>
+    </b-form>
   </div>
 </template>
 <script>
+import API from '../provider/requestsHandler';
+
 export default {
   data() {
     return {
@@ -28,7 +45,7 @@ export default {
     };
   },
   methods: {
-    login: function () {
+    login: function() {
       let name = this.name;
       let firstname = this.firstname;
       let password = this.password;

@@ -1,16 +1,21 @@
-import Vue from 'vue/dist/vue.js'
-import VueRouter from 'vue-router'
+import Vue from 'vue/dist/vue.js';
+import VueRouter from 'vue-router';
+import store from './store';
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 
-import Example from './views/Example.vue'
-import DesignList from './views/DesignList.vue'
-import DesignEdit from './views/DesignEdit.vue'
+import Example from './views/Example.vue';
+import DesignList from './views/DesignList.vue';
+import DesignEdit from './views/DesignEdit.vue';
 
-import Axios from 'axios'
-import LoginForm from "./components/LoginForm"
-import Login from "./components/Login"
+import Axios from 'axios';
+import LoginForm from './components/LoginForm';
+import Login from './components/Login';
 
 Vue.prototype.$http = Axios;
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 
 const routes = [
   { path: '/', component: Login },
@@ -18,15 +23,16 @@ const routes = [
   { path: '/dashboard', component: DesignList },
   { path: '/dashboard/new', component: DesignEdit },
   { path: '/dashboard/edit/:designId', component: DesignEdit },
-]
+];
 
 const router = new VueRouter({
   mode: 'history',
-  routes
-})
+  routes,
+});
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 new Vue({
-  router
-}).$mount('#app')
+  router,
+  store,
+}).$mount('#app');
