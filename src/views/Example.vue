@@ -15,6 +15,7 @@
 
 <script>
 import { EmailEditor } from '../components';
+import API from '../provider/requestsHandler';
 
 export default {
   name: 'example',
@@ -28,6 +29,7 @@ export default {
     saveDesign() {
       this.$refs.emailEditor.editor.saveDesign((design) => {
         console.log('saveDesign', design);
+        API.postTemplate(design);
       });
     },
     exportHtml() {

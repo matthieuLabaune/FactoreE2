@@ -9,12 +9,32 @@ export default {
                 console.log(err);
             })
     },
+    getUser(name) {
+        return restdb
+            .get(`/rest/userfactore/?q={"name": "${name}"}`)
+    },
     postUser(user) {
         return restdb
             .post("/rest/userfactore", {
                 name: user.name,
                 firstname: user.firstname,
                 password: user.password
+            }).then((response) => {
+                console.log(response);
+                return response;
+            }).catch((err) => {
+                console.log(err);
+            })
+    },
+    postTemplate(template) {
+        return restdb
+            .post("/rest/templates", {
+                template: {
+                    body: template.body,
+                    counters: template.counters,
+                    schemaVersion: template.schemaVersion
+                }
+                // TODO : user_id
             }).then((response) => {
                 console.log(response);
                 return response;
